@@ -1,6 +1,8 @@
 		</div> 
 		<!-- </content> -->
+	<div class="container">
 		<?=$charity_links;?>
+	</div>
 		<br /><br />
 		<div class="footer">
 			<nav class="nav navbar-inverse">
