@@ -1,0 +1,11 @@
+a:hover, a:link, a:visited, a:hover {text-decoration: none;}
+
+.charity-link 
+{
+	width: 50%;
+	background: LightPink;
+	text-align: center;
+	border: 1px;
+	border-radius: 5px;
+	padding: 10px; 
+}
