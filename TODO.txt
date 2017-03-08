@@ -1,3 +1,5 @@
+hide controls for adm.
+
 Paged output in forum, messages...
 Pin, Unpin topic
 Friend List? Because "Why not?" =]

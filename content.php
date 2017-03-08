@@ -12,7 +12,7 @@
 			// user
 			'user_profile', 'user_settings', 'user_saveSettings', 'messages_inbox', 
 			// messages
-			'messages_sent', 'messages_readIn', 'messages_readOut', 'messages_sending', 'messages_inboxMarkAsRead', 'messages_inboxMarkAsUnread', 'messages_inboxDelete', 'messages_deleteSent');
+			'messages_sent', 'messages_readIn', 'messages_readOut', 'messages_send', 'messages_sending', 'messages_inboxMarkAsRead', 'messages_inboxMarkAsUnread', 'messages_inboxDelete', 'messages_deleteSent');
 
 	if (in_array($menu, $menu_items))
 	{
