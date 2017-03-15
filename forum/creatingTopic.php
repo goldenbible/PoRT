@@ -21,13 +21,29 @@ if ((($subforum_row['is_read_only'] != '1') and
 		$statement = $dbh -> prepare('insert into forum_topics (user_id, subforum_id, title, post, inserted) values (:user_id, :subforum_id, :title, :post, now());');
 		$result = $statement -> execute($row);
 
-		if ($result) $message = "Topic was successfully created.";
-		else { $message = "Whoops. We've got issue with topic creating on forum. Please contact support."; print_r($statement->errorInfo());}
+		if ($result) 
+		{
+			$msg_type = 'success';
+			$message = 'Topic was successfully created.';
+		}
+		else 
+		{ 
+			$msg_type = 'danger';
+			$message = 'We\'ve got issue with topic creating on forum. Please contact support.';
+		}
 	}
-	else $message = 'What are you doing here genius? Get out!';
+	else 
+	{
+		$msg_type = 'danger';
+		$message = 'What are you doing here genius? Get out!';
+	}
+	echo '<h1>Create Topic</h1>';
+	if (isset($msg_type))
+	{
+		echo '<p class="alert alert-' . $msg_type . '">' . $message . '</a>';
+	}
 ?>
-<h1>Create Topic</h1>
-<p><?=$message;?></p>
+<br />
 <p><a href="./?menu=subforum&id=<?=$_POST['subforum_id'];?>">Return to the Subforum</a></p>
 <p><a href="./?menu=forum">Return to the Forum</a></p>
 <meta http-equiv="refresh" content="2;url=./?menu=subforum&id=<?=$_POST['subforum_id'];?>">

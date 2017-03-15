@@ -31,13 +31,25 @@
 
 		if(!$result)
 		{
-			echo "<p>Whoops. We've got issue with password reset. Sorry. Please, contact support.</p>";
+			$msg_type = 'danger';
+			$message = 'We\'ve got issue with password reset. Sorry. Please, contact support.';
 		}
-		else echo "<p>Your reply was sent.</p>";
+		else
+		{
+			$msg_type = 'success';
+			$message = 'Your reply was sent.';
+		}
 	}
 	else
 	{
-		echo '<p>Shoo! You shouldn`t be here. Get out.</p>';
+		$msg_type = 'danger';
+		$message = 'Shoo! You shouldn`t be here. Get out.';
+	}
+?>
+<?php
+	if (isset($msg_type))
+	{
+		echo '<p class="alert alert-' . $msg_type . '">' . $message . '</p>';
 	}
 ?>
 <p><a href="./?menu=forum_topic&id=<?=$_POST['topic_id'];?>&page=<?=$_POST['page'];?>">Return to the Topic</a></p>

@@ -1,6 +1,7 @@
-<h1>Sign In</h1>
+<h1>Sign Up</h1>
 <br />
 <?php
+	$messages = [];
 	if ($_POST['password'] === $_POST['password_repeat'])
 	{
 		switch ($_POST['possible_role']) 
@@ -36,12 +37,22 @@
 
 		if ($result)
 		{ 
-			$message = "You are registered user now, please sign in. ";
+			$messages[] = ['type' => 'success', 'text' => 'You are registered user now, please <a href="./?menu=auth_signIn" class="alert-link">Sign In</a>. '];
 			if ($_POST['possible_role'] === 'hanging_out')
-				$message .= 'During registration you "said" that you gonna hanging out. Please, use proper forum threads for that.';
+
+				$messages[] = ['type' => 'warning', 'text' => 'During registration you "said" that you gonna hanging out. Please, use proper forum threads for that.'];
 		}
-		else $message = "Whoops. We've got issue. Sorry. Please, contact support.";
+		else $messages[] = ['type' => 'danger', 'text' => 'We\'ve got issue with registration. Sorry. Please, contact support.'];
 	}
-	else $message = "You typed different passwords.";
+	else $messages[] = ['type' => 'danger', 'text' => 'You typed different passwords. <a href="#" onclick="window.history.go(-1)" class="alert-link">Return to the form.</a>'];
+
+	$with_exception = FALSE;
+	foreach ($messages as $item) 
+	{
+		if ($item['type'] === 'danger') $with_exception = true;
+		echo '<p class="alert alert-' . $item['type'] . '">' . $item['text'] . '</p>';
+	}
+
+	if (!$with_exception)
+			echo '<p class="alert alert-success">Hallelujah!</p>';
 ?>
-	<p><?=$message;?></p>

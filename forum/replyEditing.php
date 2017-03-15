@@ -15,12 +15,29 @@
 		$statement = $dbh -> prepare('update forum_replies set entry = :entry, updated = now(), updated_by = :user_id where id = :id');
 		$statement -> execute($row);
 
-		if ($statement) $message = "Post was successfully saved.";
-		else $message = "Whoops. We've got issue with forum. Please contact support.";
+		if ($statement) 
+		{
+			$msg_type = 'success';
+			$message = 'Post was successfully saved.';
+		}
+		else
+		{
+			$msg_type = 'danger';
+			$message = 'We\'ve got issue with forum. Please contact support.';
+		}
 	}
-	else $message = 'You have no permission to edit this post.';
+	else
+	{
+		$msg_type = 'danger';
+		$message = 'You have no permission to edit this post.';	
+	} 
 ?>
 <h1>Edit Reply</h1>
-<p><?=$message;?></p>
+<?php
+	if (isset($msg_type))
+	{
+		echo '<p class="alert alert-' . $msg_type . '">' . $message . '</p>';
+	}
+?>
 <p><a href="./?menu=forum_topic&id=<?=$reply_row['topic_id'];?>">Return to the Topic</a></p>
 <meta http-equiv="refresh" content="2;url=./?menu=forum_topic&id=<?=$reply_row['topic_id'];?>">

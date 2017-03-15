@@ -1,5 +1,6 @@
 		</div> 
 		<!-- </content> -->
+<br />
 	<div class="container">
 		<?=$charity_links;?>
 	</div>

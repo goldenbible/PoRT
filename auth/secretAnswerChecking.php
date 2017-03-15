@@ -13,45 +13,34 @@
 			
 		if(!$result)
 		{
-			echo "<p>Whoops. We've got issue with password reset. Sorry. Please, contact support.</p>";
+			echo '<p class="alert alert-danger">We\'ve got issue with password reset. Sorry. Please, contact support.</p>';
 		}
 	?>
 
-	<div class="row">
-		<div class="col-md-2">
-			<p>Password</p>
-		</div>
-		<div class="col-md-2">
-			<input type="password" name="password" maxlength="16">
-		</div>
+	<div class="form-group">
+			<label for="resetPasswordPasswordField">Password</label>
+			<input type="password" class="form-control" name="password" maxlength="16" id="resetPasswordPasswordField">
 	</div>
 
-	<div class="row">
-		<div class="col-md-2">
-			<p>Repeat Password</p>
-		</div>
-		<div class="col-md-2">
-			<input type="password" name="password_repeat" maxlength="16">
-		</div>
+	<div class="form-group">
+			<label for="resetPasswordRepeatPasswordField">Repeat Password</label>
+			<input type="password" class="form-control" name="password_repeat" maxlength="16" id="resetPasswordRepeatPasswordField">
 	</div>
 
-	<div class="row">
-		<div class="col-md-12">
-			<input type="hidden" name="verification_code" value="<?=$verification_code;?>">
-			<input type="hidden" name="menu" value="auth_passwordResetting">
-			<p align="center"><input type="submit" name="submit" value="Reset" /></p>
-		</div>
-	</div>
+	<input type="hidden" name="verification_code" value="<?=$verification_code;?>">
+	<input type="hidden" name="menu" value="auth_passwordResetting">
+	<input type="submit" class="btn btn-default form-control" name="submit" value="Reset" />
+
 	<?php	
 		}
 		else
 		{
-			echo 'Secret answer is incorrect.';
+			echo '<p class="alert alert-danger">Secret answer is incorrect.</p>';
 		}
 	}
 	else
 	{
-		echo 'Information for your email not found.';
+		echo '<p class="alert alert-danger">Information for your email not found.</p>';
 	}	
 ?>
 </form>

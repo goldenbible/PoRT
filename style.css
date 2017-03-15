@@ -9,3 +9,14 @@ a:hover, a:link, a:visited, a:hover {text-decoration: none;}
 	border-radius: 5px;
 	padding: 10px; 
 }
+
+.messages-link
+{
+	font-size: 1.5em;
+	text-decoration: bold;
+}
+
+.panel-header
+{
+	padding: 1em;
+}

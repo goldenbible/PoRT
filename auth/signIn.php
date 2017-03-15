@@ -1,4 +1,5 @@
 <h1>Sign In</h1>
+<br />
 <?php
 	if($_SESSION['uid'] > 1)
 	{
@@ -6,30 +7,18 @@
 	}
 ?>
 <form method="post">
-	<div class="row">
-		<div class="col-md-2">
-			<p>E-Mail</p>
-		</div>
-		<div class="col-md-2">
-			<input type="text" name="email">
-		</div>
+	<div class="form-group">
+			<label for="signInEmail">E-Mail</label>
+			<input type="text" class="form-control" name="email" id="signInEmail">
 	</div>
 
-	<div class="row">
-		<div class="col-md-2">
-			<p>Password</p>
-		</div>
-		<div class="col-md-2">
-			<input type="password" name="password" maxlength="16">
-		</div>
+	<div class="form-group">
+			<label for="signInPassword">Password</label>
+			<input type="password" class="form-control" name="password" maxlength="16" id="signInPassword">
 	</div>
 
-	<div class="row">
-		<div class="col-md-12">
-			<input type="hidden" name="menu" value="auth_signingIn">
-			<!-- TO DO: check email by pattern-->
-			<p align="center"><input type="submit" name="submit" value="Sign In" /></p>
-		</div>
-	</div>
+	<input type="hidden" name="menu" value="auth_signingIn">
+	<!-- TO DO: check email by pattern-->
+	<input type="submit" class="btn btn-default form-control" name="submit" value="Sign In" />
 
 </form>

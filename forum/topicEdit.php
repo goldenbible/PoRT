@@ -10,29 +10,16 @@
 ?>
 <h1><a href="./?menu=forum">Forum</a> :: <a href="./?menu=subforum&id=<?=$subrow['id'];?>"><?=$subrow['title'];?></a> :: <a href="./?menu=forum_topic&id=<?=$_GET['id'];?>"><?=$row['title'];?></a> :: Edit Topic</h1><br />
 <form method="post">
-	<div class="row">
-		<div class="col-md-2">
-			<p>Title</p>
-		</div>
-		<div class="col-md-2">
-			<input type="text" name="title" maxlength="100" size="77" value="<?=$row['title'];?>">
-		</div>
+	<div class="form-group">
+			<label for="titleField">Title</label>
+			<input type="text" class="form-control" name="title" maxlength="100" size="77" value="<?=$row['title'];?>" id="titleField">
 	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<p>Post</p>
-		</div>
-		<div class="col-md-2">
-			<textarea name="post" maxlength="5000" cols="80" rows="20"><?=$row['post'];?></textarea>
-		</div>
+	<div class="form-group">
+			<label for="postField">Post</label>
+			<textarea class="form-control" name="post" maxlength="5000" cols="80" rows="10" id="postField"><?=$row['post'];?></textarea>
 	</div>
 
-	<div class="row">
-		<div class="col-md-12">
-			<input type="hidden" name="menu" value="forum_topicEditing">
-			<input type="hidden" name="topic_id" value="<?=$_GET['id']?>">
-			<!-- TO DO: check email by pattern-->
-			<p align="center"><input type="submit" name="submit" value="Save" /></p>
-		</div>
-	</div>
+	<input type="hidden" name="menu" value="forum_topicEditing">
+	<input type="hidden" name="topic_id" value="<?=$_GET['id']?>">
+	<input type="submit" class="btn btn-default form-control" name="submit" value="Save" />
 </form>

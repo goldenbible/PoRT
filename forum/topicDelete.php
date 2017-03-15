@@ -20,14 +20,29 @@
 		
 		if(!$result)
 		{
-			$message = "Whoops. We've got issue with password reset. Sorry. Please, contact support.";
+			$msg_type = 'danger';
+			$message = 'We\'ve got issue with password reset. Sorry. Please, contact support.';
 		}
-		else $message = 'Topic was deleted.';
+		else
+		{
+			$msg_type = 'success';
+			$message = 'Topic was deleted.';
+		}
 	}
-	else $message = "You have no permission to delete this topic.";
+	else
+	{
+		$msg_type = 'danger';
+		$message = 'You have no permission to delete this topic.';
+	}
 ?>
 <h1><a href="./?menu=forum">Forum</a> :: <a href="./?menu=subforum&id=<?=$forum_topic_row['subforum_id'];?>"><?=$subforum_row['title'];?></a> :: <?=$forum_topic_row['title'];?></h1>
 <br />
-<p><?=$message;?></p>
+<?php
+	if (isset($msg_type))
+	{
+		echo '<p class="alert alert-' . $msg_type . '">' . $message . '</p>';
+	}
+?>
 <p><a href="./?menu=subforum&id=<?=$forum_topic_row['subforum_id'];?>">Return to the Subforum</a></p>
 <p><a href="./?menu=forum">Return to the Forum</a></p>
+<meta http-equiv="refresh" content="1; ./?menu=subforum&id=<?=$subforum_row['id'];?>">

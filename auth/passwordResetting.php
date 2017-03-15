@@ -7,11 +7,11 @@
 
 		if(!$result)
 		{
-			echo "<p>Whoops. We've got issue with password reset. Sorry. Please, contact support.</p>";
+			echo '<p class="alert alert-danger">Whoops. We\'ve got issue with password reset. Sorry. Please, contact support.</p>';
 		}
 		else
 		{
-			echo '<p>Password changed.</p> <p><a href="./?menu=auth_signIn">Sign In.</a></p>';
+			echo '<p class="alert alert-success">Password changed. <a class="alert-link" href="./?menu=auth_signIn">Sign In.</a></p>';
 		}
 	}
 	else
@@ -19,31 +19,19 @@
 		?>
 <p>You typed different passwords.</p>
 <form method="post">
-	<div class="row">
-		<div class="col-md-2">
-			<p>Password</p>
-		</div>
-		<div class="col-md-2">
-			<input type="password" name="password" maxlength="16">
-		</div>
+	<div class="form-group">
+			<label for="passwordResetPasswordField">Password</label>
+			<input type="password" class="form-control" name="password" maxlength="16" id="passwordResetPasswordField">
 	</div>
 
-	<div class="row">
-		<div class="col-md-2">
-			<p>Repeat Password</p>
-		</div>
-		<div class="col-md-2">
-			<input type="password" name="password_repeat" maxlength="16">
-		</div>
+	<div class="form-group">
+			<label for="passwordResetRepeatPasswordField">Repeat Password</label>
+			<input type="password" class="form-control" name="password_repeat" maxlength="16" id="passwordResetRepeatPasswordField">
 	</div>
 
-	<div class="row">
-		<div class="col-md-12">
-			<input type="hidden" name="verification_code" value="<?=$_POST['verification_code'];?>">
-			<input type="hidden" name="menu" value="auth_passwordResetting">
-			<p align="center"><input type="submit" name="submit" value="Reset" /></p>
-		</div>
-	</div>
+	<input type="hidden" name="verification_code" value="<?=$_REQUEST['verification_code'];?>">
+	<input type="hidden" name="menu" value="auth_passwordResetting">
+	<input type="submit" class="btn btn-default form-control" name="submit" value="Reset" />
 </form>
 		<?php
 	}

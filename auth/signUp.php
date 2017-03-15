@@ -1,30 +1,19 @@
 <h1>Sign Up</h1>
 <br />
 <form method="post">
-	<div class="row">
-		<div class="col-md-2">
-			<p>Nickname</p>
-		</div>
-		<div class="col-md-2">
-			<input type="text" name="nickname">
-		</div>
+	<div class="form-group">
+			<label for="nicknameField">Nickname</label>
+			<input class="form-control" type="text" name="nickname" id="nicknameField">
 	</div>
 
-	<div class="row">
-		<div class="col-md-2">
-			<p>Full Name</p>
-		</div>
-		<div class="col-md-2">
-			<input type="text" name="full_name">
-		</div>
+	<div class="form-group">
+			<label for="fullNameField">Full Name</label>
+			<input class="form-control" type="text" name="full_name" id="fullNameField">
 	</div>
 
-	<div class="row">
-		<div class="col-md-2">
-			<p>Timezone</p>
-		</div>
-		<div class="col-md-2">
-			<select name="timezone">
+	<div class="form-group">
+			<label for="timezoneField">Timezone</label>
+			<select class="form-control" name="timezone" id="timezoneField">
 				<?php
 					$timezones = DateTimezone::listIdentifiers();
 					foreach ($timezones as $item) 
@@ -36,82 +25,44 @@
 					}
 				?>
 			</select>
-		</div>
 	</div>	
 	
-	<div class="row">
-		<div class="col-md-2">
-			<p>E-Mail</p>
-		</div>
-		<div class="col-md-2">
-			<input type="text" name="email">
-		</div>
+	<div class="form-group">
+			<label for="emailField">E-Mail</label>
+			<input class="form-control" type="text" name="email" id="emailField">
 	</div>
 
-	<div class="row">
-		<div class="col-md-2">
-			<p>Password</p>
-		</div>
-		<div class="col-md-2">
-			<input type="password" name="password" maxlength="16">
-		</div>
+	<div class="form-group">
+			<label for="passwordField">Password</label>
+			<input class="form-control" type="password" name="password" maxlength="16" id="passwordField">
 	</div>
 
-	<div class="row">
-		<div class="col-md-2">
-			<p>Repeat Password</p>
-		</div>
-		<div class="col-md-2">
-			<input type="password" name="password_repeat" maxlength="16">
-		</div>
+	<div class="form-group">
+			<label for="repeatPasswordField">Repeat Password</label>
+			<input class="form-control" type="password" name="password_repeat" maxlength="16" id="repeatPasswordField">
 	</div>
 
-	<br />
-	<div class="row">
-		<div class="col-md-12">
-			<p class="alert">Site of PoRT community at that moment doesn't provide restoring passwords by e-mail, please, make sure that you remembered secret question and answer.</p>
-		</div>
+	<div class="form-group">
+			<label for="secretQuestionField">Secret Question</label>
+			<input class="form-control" type="text" name="secret_question" id="secretQuestionField">
 	</div>
 
-
-	<div class="row">
-		<div class="col-md-2">
-			<p>Secret Question</p>
-		</div>
-		<div class="col-md-2">
-			<input type="text" name="secret_question">
-		</div>
+	<div class="form-group">
+			<label for="secretAnswerField">Secret Answer</label>
+			<input class="form-control" type="text" name="secret_answer" id="secretAnswerField">
 	</div>
 
-	<div class="row">
-		<div class="col-md-2">
-			<p>Secret Answer</p>
-		</div>
-		<div class="col-md-2">
-			<input type="text" name="secret_answer">
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-2">
-			<p>What you plan to do in community?</p>
-		</div>
-		<div class="col-md-2">
-			<select name="possible_role">
+	<div class="form-group">
+			<label for="possibleRoleField">What you plan to do in community?</label>
+			<select class="form-control" name="possible_role" id="possibleRoleField">
 				<option value="programming">Programming</option>
 				<option value="suggesting">Suggesting</option>
 				<option value="hanging_out">Hanging out</option>
 			</select>
-		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-md-12">
-			<input type="hidden" name="menu" value="registration">
-			<!-- TO DO: check email by pattern-->
-			<p align="center"><input type="submit" name="submit" value="Sign Up" /></p>
-		</div>
-	</div>
-
+	<input type="hidden" name="menu" value="registration">
+	<!-- TO DO: check email by pattern-->
+	<input class="btn btn-default form-control" type="submit" name="submit" value="Sign Up" />
 
 </form>

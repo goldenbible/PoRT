@@ -7,7 +7,7 @@
 
 <div class="row">
 	<div class="col-md-6">
-		<p><a href="./?menu=messages_inbox"><button>Inbox</button></a><a href="./?menu=messages_sent"><button>Sent</button></a></p>
+		<p><a class="messages-link" href="./?menu=messages_inbox">[Inbox]</a> <a class="messages-link" href="./?menu=messages_sent">[Sent]</a></p>
 	</div>
 	<!--<div class="col-md-6">
 		<p align="right"><button><a href="./?menu=messages_send">Send a Message</a></button></p>
@@ -71,9 +71,9 @@
 		<input type="hidden" id="menu" name="menu" value="messages_inboxMarkAsRead" />
 		<p>
 
-			<input type="submit" name="submit_mark" value="Mark as Read" onclick="document.getElementById('menu').value='messages_inboxMarkAsRead'; document.messagesForm.action='./?menu=messages_inboxMarkAsRead'; document.messagesForm.submit();" />
-			<input type="submit" name="submit_mark_as_unread" value="Mark as Unread" onclick="document.getElementById('menu').value='messages_inboxMarkAsUnread'; document.messagesForm.action='./?menu=messages_inboxMarkAsUnread'; document.messagesForm.submit();" />
-			<input type="submit" name="submit_delete" onclick="document.getElementById('menu').value='messages_inboxDelete'; document.messagesForm.action='./?menu=messages_inboxDelete'; document.messagesForm.submit();"" value="Delete" />
+			<input type="submit" class="btn btn-default btn-sm" name="submit_mark" value="Mark as Read" onclick="document.getElementById('menu').value='messages_inboxMarkAsRead'; document.messagesForm.action='./?menu=messages_inboxMarkAsRead'; document.messagesForm.submit();" />
+			<input type="submit" class="btn btn-default btn-sm" name="submit_mark_as_unread" value="Mark as Unread" onclick="document.getElementById('menu').value='messages_inboxMarkAsUnread'; document.messagesForm.action='./?menu=messages_inboxMarkAsUnread'; document.messagesForm.submit();" />
+			<input type="submit" class="btn btn-danger btn-sm" name="submit_delete" onclick="document.getElementById('menu').value='messages_inboxDelete'; document.messagesForm.action='./?menu=messages_inboxDelete'; document.messagesForm.submit();"" value="Delete" />
 		</p>
 	</div>
 </div>
@@ -83,6 +83,6 @@
 	}
 	else 
 	{
-		echo '<p align="center">No messages</p>';
+		echo '<p class="alert alert-info">No messages</p>';
 	}
 ?>

@@ -1,4 +1,4 @@
-<h1>Forum</h1>
+<h1><a href="./?menu=forum">Forum</a></h1>
 <br />
 <?php
 	$result = mysqli_query($mysql, 'select * from forums order by sort');

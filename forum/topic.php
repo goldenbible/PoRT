@@ -20,15 +20,16 @@
 	{
 		echo '<p align="right">';
 		if(empty($row['pinned']))
-			echo '<a href="./?menu=forum_pinTopic&id=' . $row['id'] . '"><button class="small">Pin the Topic</button></a>';
+			echo '<a href="./?menu=forum_pinTopic&id=' . $row['id'] . '"><button class="btn btn-success">Pin the Topic</button></a>';
 		else
-			echo '<a href="./?menu=forum_unpinTopic&id=' . $row['id'] . '"><button class="small">Unpin the Topic</button></a>';
+			echo '<a href="./?menu=forum_unpinTopic&id=' . $row['id'] . '"><button class="btn btn-warning">Unpin the Topic</button></a>';
 		echo '</p>';
 	}
 
 ?>
 
-<table class="table table-striped">
+<div class="panel panel-primary">
+	<div class="panel-header"><h3><?=$row['title'];?></h3><hr /></div>
 <?php
 
 	$statement = $dbh -> prepare('select * from users where id = :id');
@@ -39,16 +40,29 @@
 	$statement -> execute(array('id' => $row['user_id']));
 	$user_row = $statement -> fetch();
 
-	echo "<tr><td><a href='./?menu=user_profile&id=" . $row['user_id'] . "' target='_blank'><b>" . $user_row['nickname'] . "</b></a><br /><small>" . $user_row['name'] . "</small></td><td>" . prepare_post($row['post']) . "</td></tr>" .
-		"<tr><td>" . format_date($row['inserted']) . "</td><td align='right'>";
+	echo '<div class="panel-body">' .
+			'<table width="100%"><tr><td valign="top" width="20%"><a href="./?menu=user_profile&id=' . $row['user_id'] . '" target="_blank"><b>' 
+			. $user_row['nickname'] . '</b></a><br /><small>' . $user_row['name'] . '</small></p></td><td valign="top">'
+	 		. ' <div>' . prepare_post($row['post']) . '</div></td></tr></table>' 
+	 	.'</div>' .
+		'<div class="panel-footer text-right"><p class="pull-left">' . format_date($row['inserted']) . '</p>';
 		if ( ($row['user_id'] == $_SESSION['uid'])
-			or ($current_user_row['role_id'] < 3))
-		echo '<a href="./?menu=forum_topicEdit&id=' . $row['id'] . '"><button class="small">Edit</button></a><a href="./?menu=forum_topicDelete&id=' . $row['id'] . '"><button class="small">Delete</button></a><a href="./?menu=forum_closeTopic&id=' . $row['id'] . '"><button class="small">Close</button></a>';
-		echo "</td></tr>";
+			or ($_SESSION['role_id'] < 3))
+		echo '<a href="./?menu=forum_topicEdit&id=' . $row['id'] . '"><button class="btn btn-default btn-sm">Edit</button></a><a href="./?menu=forum_topicDelete&id=' . $row['id'] . '"><button class="btn btn-danger btn-sm">Delete</button></a><a href="./?menu=forum_closeTopic&id=' . $row['id'] . '"><button class="btn btn-warning btn-sm">Close</button></a>';
+		echo "</div>";
 
-	echo '</table>';
+	echo '</div>';
 
-	$page_nav = '<a href="./?menu=forum_topic&id=' . $_GET['id'] . '">First Page</a> ';
+	$page_nav = '';
+	if ($page > 1)
+		$page_nav .= '<a href="./?menu=forum_topic&id=' . $_GET['id'] . '&page=' . ($page - 1) . '">[Previous Page]</a> ';
+
+	$text_first_page = '[First Page]';
+	if ($page == 1)
+		$page_nav .=  $text_first_page . ' ';
+	else
+		$page_nav .= '<a href="./?menu=forum_topic&id=' . $_GET['id'] . '">' . $text_first_page . '</a> ';
+
 	$statement = $dbh -> prepare('select count(id) from forum_replies where topic_id = :id and deleted is null');
 	$statement -> execute(array('id' => $_GET['id'] ));
 	$post_count_row = $statement -> fetch();
@@ -67,15 +81,26 @@
 		{
 			if($i>1 and $i<$page_count)
 			{
-				$page_nav .= "<a href=\"./?menu=forum_topic&id=" . $_GET['id'] . "&page=$i\">[$i]</a> ";
+				if ($page == $i)
+					$page_nav .= '['. $i .'] ';
+				else
+					$page_nav .= "<a href=\"./?menu=forum_topic&id=" . $_GET['id'] . "&page=$i\">[$i]</a> ";
 			}
 		}
-		$page_nav .= '<a href="./?menu=forum_topic&id=' . $_GET['id'] . '&page=' . $page_count . '">Last Page</a> ';
+		$text_last_page = '[Last Page]';
+		if ($page == $page_count)
+			$page_nav .= $text_last_page . ' ';
+		else
+			$page_nav .= '<a href="./?menu=forum_topic&id=' . $_GET['id'] . '&page=' . $page_count . '">' . $text_last_page . '</a> ';
+
+	if ($page < $page_count)
+		$page_nav .= '<a href="./?menu=forum_topic&id=' . $_GET['id'] . '&page=' . ($page + 1) . '">[Next Page]</a> ';
+
 	}
 	else $page_nav = '';
 	echo $page_nav . '<br /><br />';
 
-	echo '<table class="table table-striped">';
+	echo '<table class="table table-striped" width="100%">';
 
 	$statement = $dbh -> prepare('select fr.user_id, roles.name, fr.inserted, fr.id, fr.entry, users.nickname from forum_replies fr join users on fr.user_id = users.id join roles on users.role_id = roles.id where fr.topic_id = :topic_id and fr.deleted is null order by inserted asc limit ' . (($page - 1)* $_SESSION['posts_per_page'] ) . ', ' . $_SESSION['posts_per_page']);
 	/*$query = '';
@@ -97,19 +122,19 @@
 	//echo 'rowCount = ' . $statement -> rowCount() . '<br />';
 	while($reply_row = $statement -> fetch())
 	{
-		echo "<tr><td><a href='./?menu=user_profile&id=" . $reply_row['user_id'] . "' target='_blank'><b>" . $reply_row['nickname'] . "</b></a><br /><small>" . $reply_row['name'] . "</small></td><td>" . prepare_post($reply_row['entry']) . "</td></tr>" .
+		echo "<tr><td width='20%'><a href='./?menu=user_profile&id=" . $reply_row['user_id'] . "' target='_blank'><b>" . $reply_row['nickname'] . "</b></a><br /><small>" . $reply_row['name'] . "</small></td><td>" . prepare_post($reply_row['entry']) . "</td></tr>" .
 		"<tr><td>" . format_date($reply_row['inserted']) . "</td><td align='right'>";
 		if ( ($reply_row['user_id'] == $_SESSION['uid'])
 			or ($current_user_row['role_id'] < 3))
-		echo '<a href="./?menu=forum_replyEdit&id=' . $reply_row['id'] . '"><button class="small">Edit</button></a><a href="./?menu=forum_replyDelete&id=' . $reply_row['id'] . '"><button class="small">Delete</button></a>';
+		echo '<a href="./?menu=forum_replyEdit&id=' . $reply_row['id'] . '"><button class="btn btn-default btn-xs">Edit</button></a><a href="./?menu=forum_replyDelete&id=' . $reply_row['id'] . '"><button class="btn btn-danger btn-xs">Delete</button></a>';
 		echo "</td></tr>";
 		;
 	}
 
 ?>
-</table>
+	</table>
 <?php
-	echo $page_nav;
+	echo $page_nav . '<br />';
 	$statement = $dbh -> prepare('select is_read_only from forums where id = :forum_id');
 	$statement -> execute(array('forum_id' => $subrow['forum_id']));
 	$forum_row = $statement -> fetch();
@@ -131,26 +156,18 @@
 
 	{
 	?><br />
-<h3>Reply</h3><hr /><br />
+<h3>Reply</h3><hr />
 
 		<form method="post">
-			<div class="row">
-				<div class="col-md-2">
-					<p>Post</p>
-				</div>
-				<div class="col-md-2">
-					<textarea name="entry" maxlength="5000" cols="80" rows="10"></textarea>
-				</div>
+			<div class="form-group">
+					<label for="entryField">Post</label>
+					<textarea name="entry" class="form-control" maxlength="5000" rows="10" id="entryField"></textarea>
 			</div>
 
-			<div class="row">
-				<div class="col-md-12">
 					<input type="hidden" name="menu" value="forum_replying">
 					<input type="hidden" name="page" value="<?=$page;?>">
 					<input type="hidden" name="topic_id" value="<?=$_GET['id']?>">
-					<p align="center"><input type="submit" name="submit" value="Reply" /></p>
-				</div>
-			</div>
+					<input type="submit" class="btn btn-success form-control" name="submit" value="Reply" />
 		</form>	
 		<!--<div class="row">
 			<div class="col-md-12">

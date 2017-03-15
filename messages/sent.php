@@ -7,7 +7,7 @@
 
 <div class="row">
 	<div class="col-md-6">
-		<p><a href="./?menu=messages_inbox"><button>Inbox</button></a><a href="./?menu=messages_sent"><button>Sent</button></a></p>
+		<p><a class="messages-link" href="./?menu=messages_inbox">[Inbox]</a> <a class="messages-link" href="./?menu=messages_sent">[Sent]</a></p>
 	</div>
 </div>
 <?php
@@ -65,7 +65,7 @@
 <div class="row">
 	<div class="col-md-6">
 		<input type="hidden" id="menu" name="menu" value="messages_deleteSent" />
-		<p><input type="submit" name="submit" value="Delete" title="It won't delete the message[s] from recepient's inbox" onclick="document.messagesForm.submit();" /></p>
+		<p><input type="submit" class="btn btn-danger btn-sm" name="submit" value="Delete" title="It won't delete the message[s] from recepient's inbox" onclick="document.messagesForm.submit();" /></p>
 	</div>
 </div>
 </form>		
@@ -73,6 +73,6 @@
 	}
 	else 
 	{
-		echo '<p align="center">No messages</p>';
+		echo '<p class="alert alert-info">No messages</p>';
 	}
 ?>

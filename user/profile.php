@@ -24,7 +24,7 @@
 
 	<div class="row">
 		<div class="col-md-2">
-			<a href="./?menu=messages_send&id=<?=$user_row['id'];?>"><button>Send a Message</button></a>
+			<a href="./?menu=messages_send&id=<?=$user_row['id'];?>"><button class="btn btn-default btn-sm">Send a Message</button></a>
 		</div>
 	</div>
 <?php
@@ -32,7 +32,7 @@
 	$result = $statement -> execute(array('user_id' => $_GET['id']));
 	if(!$result)
 	{
-		echo "Whoops. We've got issue with settings. Sorry. Please, contact support.";
+		echo '<p class="alert alert-danger">We\'ve got issue with settings. Sorry. Please, contact support.</p>';
 	}
 	while ($row = $statement -> fetch())
 	{

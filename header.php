@@ -9,11 +9,11 @@
 			{
 		?>
 		<!-- <prog-server> -->
+		<script src="./jquery/jquery.min.js" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" crossorigin="anonymous">
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="./bootstrap/css/bootstrap-theme.min.css" crossorigin="anonymous">
 		<script src="./bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
-		<script src="./jquery/jquery.min.js" crossorigin="anonymous"></script>
 		<!-- </prog-server> -->		
 		<?php
 			}
@@ -32,17 +32,22 @@
 		<?php
 			}
 		?>
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="./style.css">
 	</head>
 	<body>
-	<nav class="nav navbar-inverse">
+	<nav class="nav navbar-inverse" role="navigation">
 			<div class="container">
 
 				<div class="navbar-header">
-					<a href="./" class="navbar-brand" title="People of Red Table">PoRT</a>
+					<a href="./" class="navbar-brand navbar-link" title="People of Red Table">PoRT</a>
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-bar-port">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
 				</div>
 
-				<div class="navbar" id="nav">
+				<div class="collapse navbar-collapse" id="nav-bar-port">
 					<ul class="nav navbar-nav">
 						<li><a href="./?menu=forum">Forum</a></li>
 						<?php 

@@ -1,3 +1,5 @@
+Make emails unique. and warn.
+
 hide controls for adm.
 
 Paged output in forum, messages...
