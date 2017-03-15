@@ -39,12 +39,12 @@
 
 	<div class="form-group">
 			<label for="passwordField">Password</label>
-			<input type="password" class="form-control" name="password" maxlength="16"  value="<?=$user_row['password'];?>" id="passwordField">
+			<input type="password" class="form-control" name="password" maxlength="16"  value="" id="passwordField">
 	</div>
 
 	<div class="form-group">
 			<label for="repeatPasswordField">Repeat Password</label>
-			<input type="password" class="form-control" name="password_repeat" maxlength="16" value="<?=$user_row['password'];?>" id="repeatPasswordField">
+			<input type="password" class="form-control" name="password_repeat" maxlength="16" value="" id="repeatPasswordField">
 	</div>
 
 

@@ -18,6 +18,8 @@ Black List with the name of company which took 3 368 dollars then didn't finish 
 			They will be deleted from blacklist only when they will answer for this in a court or will return payment.
 Wiki
 
+Give option to get MD5 if was answered question or clicked link on email instead of resetting.
+
 social networks editing in settings
 
 Chat!! =] it shall be fast=] Thanks ZOHO =]
