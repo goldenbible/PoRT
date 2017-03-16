@@ -13,6 +13,13 @@
 	$subrow = $statement -> fetch();
 ?>
 <h1><a href="./?menu=forum">Forum</a> :: <a href="./?menu=subforum&id=<?=$subrow['id'];?>"><?=$subrow['title'];?></a> :: <a href="./?menu=forum_topic&id=<?=$row['id'];?>"><?=$row['title'];?></a></h1>
+<form method="post">
+	<input type="hidden" name="menu" value="search" />
+	<div class="input-group input-group-sm">
+		<input type="text" class="form-control" name="search_query" placeholder="Search" />
+		<span class="input-group-btn"><input type="submit" class="btn btn-default" name="submit" value="Search"></span>
+	</div>
+</form>
 <br />
 
 <?php
@@ -20,9 +27,9 @@
 	{
 		echo '<p align="right">';
 		if(empty($row['pinned']))
-			echo '<a href="./?menu=forum_pinTopic&id=' . $row['id'] . '"><button class="btn btn-success">Pin the Topic</button></a>';
+			echo '<a href="./?menu=forum_pinTopic&id=' . $row['id'] . '"><button class="btn btn-success"><span class="glyphicon glyphicon-pushpin"></span> Pin the Topic</button></a>';
 		else
-			echo '<a href="./?menu=forum_unpinTopic&id=' . $row['id'] . '"><button class="btn btn-warning">Unpin the Topic</button></a>';
+			echo '<a href="./?menu=forum_unpinTopic&id=' . $row['id'] . '"><button class="btn btn-warning"><span class="glyphicon glyphicon-pushpin"></span> Unpin the Topic</button></a>';
 		echo '</p>';
 	}
 
@@ -48,7 +55,7 @@
 		'<div class="panel-footer text-right"><p class="pull-left">' . format_date($row['inserted']) . '</p>';
 		if ( ($row['user_id'] == $_SESSION['uid'])
 			or ($_SESSION['role_id'] < 3))
-		echo '<a href="./?menu=forum_topicEdit&id=' . $row['id'] . '"><button class="btn btn-default btn-sm">Edit</button></a><a href="./?menu=forum_topicDelete&id=' . $row['id'] . '"><button class="btn btn-danger btn-sm">Delete</button></a><a href="./?menu=forum_closeTopic&id=' . $row['id'] . '"><button class="btn btn-warning btn-sm">Close</button></a>';
+		echo '<a href="./?menu=forum_topicEdit&id=' . $row['id'] . '"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span>  Edit</button></a><a href="./?menu=forum_topicDelete&id=' . $row['id'] . '"><button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</button></a><a href="./?menu=forum_closeTopic&id=' . $row['id'] . '"><button class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-remove-circle"></span> Close</button></a>';
 		echo "</div>";
 
 	echo '</div>';
@@ -126,7 +133,7 @@
 		"<tr><td>" . format_date($reply_row['inserted']) . "</td><td align='right'>";
 		if ( ($reply_row['user_id'] == $_SESSION['uid'])
 			or ($current_user_row['role_id'] < 3))
-		echo '<a href="./?menu=forum_replyEdit&id=' . $reply_row['id'] . '"><button class="btn btn-default btn-xs">Edit</button></a><a href="./?menu=forum_replyDelete&id=' . $reply_row['id'] . '"><button class="btn btn-danger btn-xs">Delete</button></a>';
+		echo '<a href="./?menu=forum_replyEdit&id=' . $reply_row['id'] . '"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</button></a><a href="./?menu=forum_replyDelete&id=' . $reply_row['id'] . '"><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</button></a>';
 		echo "</td></tr>";
 		;
 	}

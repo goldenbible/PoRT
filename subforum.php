@@ -16,6 +16,14 @@
 	else $page = 1;
 ?>
 <h1><a href="./?menu=forum">Forum</a> :: <a href="./?menu=subforum&id=<?=$subforum_row['id'];?>"><?=$subforum_row['title'];?></a></h1>
+<form method="post">
+	<input type="hidden" name="menu" value="search" />
+	<div class="input-group input-group-sm">
+		<input type="text" class="form-control" name="search_query" placeholder="Search" />
+		<span class="input-group-btn"><input type="submit" class="btn btn-default" name="submit" value="Search"></span>
+	</div>
+</form>
+<br />
 <?php
 	if ((($subforum_row['is_read_only'] != '1') and 
 			($forum_row['is_read_only'] != '1') and $_SESSION['uid'] > -1)
@@ -23,7 +31,7 @@
 	{
 ?>
 <p align="right">
-<a href="./?menu=forum_createTopic&subforum_id=<?=$_GET['id'];?>"><button>Create Topic</button></a>
+<a href="./?menu=forum_createTopic&subforum_id=<?=$_GET['id'];?>"><button class="btn btn-default">Create Topic</button></a>
 </p>
 <?php
 	}

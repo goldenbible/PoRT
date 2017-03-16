@@ -80,7 +80,7 @@
 					?>
 						<li><a href="./?menu=user_settings">Settings</a></li>
 						<li><a href="./?menu=sign_out">Sign Out</a></li>
-						<li><a href="./?menu=user_profile&id=<?=$_SESSION['uid'];?>"><b><?=$_SESSION['nickname'];?></b></a></li>
+						<li><a href="./?menu=user_profile&id=<?=$_SESSION['uid'];?>"><span class="glyphicon glyphicon-user"></span> <b><?=$_SESSION['nickname'];?></b></a></li>
 					<?php
 						}
 						else 

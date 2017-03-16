@@ -2,6 +2,10 @@ Make emails unique. and warn.
 
 hide controls for adm.
 
+make .btn-toolbar with .btn-group .btn-group-sm for any posts and messages with BBCode.
+
+Search on the forum. =]
+
 Paged output in forum, messages...
 Pin, Unpin topic
 Friend List? Because "Why not?" =]

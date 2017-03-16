@@ -1,4 +1,11 @@
 <h1><a href="./?menu=forum">Forum</a></h1>
+<form method="post">
+	<input type="hidden" name="menu" value="search" />
+	<div class="input-group input-group-sm">
+		<input type="text" class="form-control" name="search_query" placeholder="Search" />
+		<span class="input-group-btn"><input type="submit" class="btn btn-default" name="submit" value="Search"></span>
+	</div>
+</form>
 <br />
 <?php
 	$result = mysqli_query($mysql, 'select * from forums order by sort');
