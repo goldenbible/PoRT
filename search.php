@@ -27,11 +27,18 @@
 		$search_query = htmlspecialchars($search_query);
 		$search_query = mysqli_real_escape_string($mysql, $search_query);
 
-		$query = 'select id, title, post from forum_topics where title like \'%' . $search_query . '%\'
-			union select id, title, post from forum_topics where post like \'%' . $search_query . '%\'
-			union select id, title, post from forum_topics where post like \'%' . $search_query . '%\'
-			union select ft.id, ft.title, fr.entry `post` from forum_replies fr 
+		$query = 'select ft.id, ft.title, ft.post, sf.title `subforum_title`, sf.id `subforum_id`, f.title `forum_title`, f.id `forum_id` from forum_topics ft
+					join subforums sf on ft.subforum_id = sf.id
+					join forums f on sf.forum_id = f.id
+					where ft.title like \'%' . $search_query . '%\'
+			union select ft.id, ft.title, ft.post, sf.title `subforum_title`, sf.id `subforum_id`, f.title `forum_title`, f.id `forum_id` from forum_topics ft
+					join subforums sf on ft.subforum_id = sf.id
+					join forums f on sf.forum_id = f.id
+					where ft.post like \'%' . $search_query . '%\'
+			union select ft.id, ft.title, fr.entry `post`, sf.title `subforum_title`, sf.id `subforum_id`, f.title `forum_title`, f.id `forum_id` from forum_replies fr
 					join forum_topics ft on fr.topic_id = ft.id
+					join subforums sf on ft.subforum_id = sf.id
+					join forums f on sf.forum_id = f.id
 					where fr.entry like \'%' . $search_query . '%\'
 					
 			';
@@ -46,7 +53,7 @@
 				{
 					$first_words_of_post = prepare_post(substr($row['post'], 0, 100));
 					if (strlen($row['post']) > 100) $first_words_of_post .= '...';
-					echo '<tr><td><a href="./?menu=forum_topic&id=' . $row['id'] . '"><b>' . $row['title'] . '</b></a><br /><br />' . $first_words_of_post . '</td></tr>';
+					echo '<tr><td>' . $row['forum_title'] . ' :: <a href="./?menu=subforum&id='.$row['subforum_id'].'">' . $row['subforum_title']. '</a> :: <a href="./?menu=forum_topic&id=' . $row['id'] . '"><b>' . $row['title'] . '</b></a><br /><br />' . $first_words_of_post . '</td></tr>';
 				}
 				echo '</table>';
 			}
@@ -60,6 +67,7 @@
 		{
 			$msg_type = 'danger';
 			$message = 'We\'ve  got issue with forum search. Please, contact support.';
+			echo mysqli_error($mysql);
 		}
 	}
 
