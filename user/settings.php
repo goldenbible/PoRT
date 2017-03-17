@@ -53,6 +53,8 @@
 			<input type="password" class="form-control" name="current_password" maxlength="16" value="" title="Fill this field if you wanna change the password" id="currentPasswordField">
 	</div>
 
+	<p class="alert alert-warning">You are not able to reset password by email now. Be sure that you filled and remembered "Secret Question" and "Secret Answer" fields.</p>
+
 	<div class="form-group">
 			<label for="secretQuestionField">Secret Question</label>
 			<input type="text" class="form-control" name="secret_question" value="<?=$user_row['secret_question'];?>" id="secretQuestionField">

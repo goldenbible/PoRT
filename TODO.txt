@@ -1,3 +1,6 @@
+
+Show forum title in subforum.
+
 Make emails unique. and warn.
 
 hide controls for adm.
