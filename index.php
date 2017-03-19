@@ -1,4 +1,5 @@
 <?php
+	require 'log.php';
 	require 'config.php';
 	require 'languages.php';
 	require 'auth.php';

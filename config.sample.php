@@ -21,11 +21,11 @@
 
 	$charset = 'utf8';
 	
-	$dbh = new PDO("mysql:host=$host;dbname=$database", $user, $password, 
+	$pdo = $dbh = new PDO("mysql:host=$host;dbname=$database", $user, $password, 
 		array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES $charset"));
 	if(!$dbh)
 	{
-		echo "Whoops. We've got issue with database MySQL PDO connection.";
+		echo "We've got issue with database MySQL PDO connection.";
 		exit;
 	}
 
@@ -33,7 +33,13 @@
 	mysqli_set_charset($mysql,'utf8');
 	if(!$mysql)
 	{
-		echo "Whoops. We've got issue with database MySQL connection.";
+		echo "We've got issue with database MySQL connection.";
 		exit;
 	}
+
+	$array = explode('/', $_SERVER['SCRIPT_NAME']);
+	if (count($array) > 1)
+		$addition_url = '/' . $array[0];
+	$base_url = 'http://' . $_SERVER['HTTP_HOST'] . $addition_url . '/';
+	
 ?>

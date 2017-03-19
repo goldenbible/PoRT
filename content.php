@@ -4,9 +4,13 @@
 	else
 		$menu = 'forum';
 
-	$menu_items = ['auth_signUp', 'registration', 'auth_signIn', 'auth_signingIn', 'forum', 'subforum', 'forum_createTopic', 'forum_creatingTopic', 'forum_topic', 'forum_replying',
+	$menu_items = ['auth_signUp', 'registration', 'auth_signIn', 'auth_signingIn', 'user_resetPasswordByEMail',
+
+		// forum
+		'forum', 'subforum', 'forum_createTopic', 'forum_creatingTopic', 'forum_topic', 'forum_replying',
 		'forum_topicEdit', 'forum_topicEditing', 'forum_replyEdit', 'forum_replyEditing', 'forum_topicDelete', 'forum_replyDelete', 'forum_closeTopic', 'forum_openTopic', 
 			'forum_pinTopic', 'forum_unpinTopic',
+
 			// auth
 			'auth_resetPassword', 'auth_secretAnswerChecking', 'auth_passwordResetting', 
 			// user
