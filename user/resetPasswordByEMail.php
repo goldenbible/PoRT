@@ -30,7 +30,7 @@
 					. 'For your account on PoRT Site http://%http_host%'
 					. ' was requested resetting of password. ' . PHP_EOL
 					. ' If you want to reset your password, please, click this link: ' . PHP_EOL
-					. ' http://%http_host%?menu=users_resetPasswordByEMail' 
+					. ' %http_host%?menu=user_resetPasswordByEMail' 
 					. '&verification_code=%verification_code%'
 					. '&email=%user_email% ' . PHP_EOL . PHP_EOL . PHP_EOL
 					. 'If you did not request this operation, just ignore this letter.'
@@ -137,12 +137,7 @@
 			$message = 'You typed different passwords. ';
 		}
 	}
-	else
-	{
-		$msg_type = 'danger';
-		$message =  'Please, contact support. ';
-	}
-	
+
 	if (isset($message) and isset($msg_type))
 	{
 		echo "<div class='alert alert-$msg_type'>$message</div>";

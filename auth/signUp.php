@@ -42,8 +42,6 @@
 			<input class="form-control" type="password" name="password_repeat" maxlength="16" id="repeatPasswordField">
 	</div>
 
-	<p class="alert alert-warning">You are not able to reset password by email now. Be sure that you filled and remembered "Secret Question" and "Secret Answer" fields.</p>
-
 	<div class="form-group">
 			<label for="secretQuestionField">Secret Question</label>
 			<input class="form-control" type="text" name="secret_question" id="secretQuestionField">
